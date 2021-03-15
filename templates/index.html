@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+
+{% block title %}Welcome to Car Price Prediction ML WebApp{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <div class="d-grid mx-auto col">
+        <div>
+            <h3 class="d-flex justify-content-center">Welcome to</h3>
+            <h1 class="d-flex justify-content-center">Melbourne House Price Prediction ML WebApp</h1>
+            <br><br>
+        </div>
+
+{% if pred %}
+    <div>
+        <div class="d-flex justify-content-center" >
+            <h4 class="d-inline-flex p-2 border border-success rounded">You can sell the house for ${{ pred }}</h4>
+        </div>
+    </div>
+    <br><br>
+{% endif %}
+
+<form action="/" method="POST">
+    {{ form.hidden_tag() }}
+    <div class="row">
+        <div class="form-group col-sm">
+            <h5>{{ form.rooms.label(class="form-control-label") }}</h5>
+            {{ form.rooms(class="form-control-lg") }}
+        </div>
+        <div class="form-group col-sm">
+            <h5>{{ form.method.label(class="form-control-label") }}</h5>
+            {{ form.method(class="form-control-lg") }}
+        </div>
+        <div class="form-group col-sm">
+            <h5>{{ form.ptype.label(class="form-control-label") }}</h5>
+            {% for subfield in form.ptype %}
+                <div class="form-check">
+                    {{ subfield(class="form-check-input") }}
+                    {{ subfield.label(class="form-check-label") }}
+                </div>
+            {% endfor %}
+        </div>
+        <div class="form-group col-sm">
+            <h5>{{ form.postcode.label(class="form-control-label") }}</h5>
+            {{ form.postcode(class="form-control-lg") }}
+        </div>
+        <div class="form-group col-sm">
+            <h5>{{ form.distance.label(class="form-control-label") }}</h5>
+            {{ form.distance(class="form-control-lg") }}
+        </div>
+        <div class="form-group col-sm">
+            <h5>{{ form.region.label(class="form-control-label") }}</h5>
+            {{ form.region(class="form-control-lg") }}
+        </div>
+        <div class="form-group col-sm">
+            <h5>{{ form.propertycount.label(class="form-control-label") }}</h5>
+            {{ form.propertycount(class="form-control-lg") }}
+        </div>
+        <div class="form-group col-sm">
+            <h5>{{ form.bedrooms.label(class="form-control-label") }}</h5>
+            {{ form.bedrooms(class="form-control-lg") }}
+        </div>
+        <div class="form-group col-sm">
+            <h5>{{ form.bathrooms.label(class="form-control-label") }}</h5>
+            {{ form.bathrooms(class="form-control-lg") }}
+        </div>
+        <div class="form-group col-sm">
+            <h5>{{ form.cars.label(class="form-control-label") }}</h5>
+            {{ form.cars(class="form-control-lg") }}
+        </div>
+        <div class="form-group col-sm">
+            <h5>{{ form.landsize.label(class="form-control-label") }}</h5>
+            {{ form.landsize(class="form-control-lg") }}
+        </div>
+        <div class="form-group col-sm">
+            <h5>{{ form.buildingarea.label(class="form-control-label") }}</h5>
+            {{ form.buildingarea(class="form-control-lg") }}
+        </div>
+        <div class="form-group col-sm">
+            <h5>{{ form.yearbuilt.label(class="form-control-label") }}</h5>
+            {{ form.yearbuilt(class="form-control-lg") }}
+        </div>
+        <div class="form-group col-sm">
+            <h5>{{ form.latitude.label(class="form-control-label") }}</h5>
+            {{ form.latitude(class="form-control-lg") }}
+        </div>
+        <div class="form-group col-sm">
+            <h5>{{ form.longitude.label(class="form-control-label") }}</h5>
+            {{ form.longitude(class="form-control-lg") }}
+        </div>
+    </div>
+    <br><br>
+    <button type="submit" class="btn btn-primary d-grid mx-auto">Predict</button>
+    <br>
+</form>
+</div>
+</div>
+
+{% endblock %}
